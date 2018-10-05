@@ -2,7 +2,8 @@ const Telegraf = require("telegraf");
 const express = require("express");
 const expressApp = express();
 
-const API_TOKEN = process.env.API_TOKEN || "";
+const API_TOKEN =
+  process.env.API_TOKEN || "664502429:AAFE5ZMd_rkvPPyG4ZMEdVHccQwBRh9fNrI";
 const PORT = process.env.PORT || 3000;
 const URL = process.env.URL || "https://xoxobot.herokuapp.com/";
 
