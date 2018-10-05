@@ -4,9 +4,10 @@ const expressApp = express();
 
 const API_TOKEN = process.env.API_TOKEN || "";
 const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || "https://your-heroku-app.herokuapp.com";
+const URL = process.env.URL || "https://xoxobot.herokuapp.com/";
 
 const bot = new Telegraf(API_TOKEN);
+bot.start(ctx => ctx.reply("Welcome"));
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
 expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
 /*
