@@ -60,8 +60,11 @@ bot.command("7", (ctx) => play(ctx, "7"))
 bot.command("8", (ctx) => play(ctx, "8"))
 bot.command("9", (ctx) => play(ctx, "9"))
 
-function play(ctx, sign) {
-  ctx.reply("play :)" + sign);
+function play(ctx, pos) {
+  var sign = "O";
+  if (ctx.message.from.id == players[0].id) sign = "X";
+  ctx.reply("position: " + pos);
+  ctx.reply("sign: " + sign);
 }
 
 bot.catch((err) => {
