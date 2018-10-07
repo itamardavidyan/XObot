@@ -28,9 +28,7 @@ bot.command("play", (ctx) => {
     id: ctx.message.from.id,
     sign: "X"
   });
-  ctx.reply(players[turn]);
-  ctx.reply("here");
-
+  ctx.reply(players[turn].sign);
 //   ctx.reply(players[turn]);
 //   if (turn == 0) turn = 1;
 //   else turn = 0;
