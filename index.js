@@ -13,8 +13,8 @@ bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
-bot.hears(/me/i, ctx => {
-  ctx.reply("length: " + players.length);
+bot.command(/me/i, ctx => {
+//   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
   const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
   players.push({
@@ -47,6 +47,18 @@ bot.command("end", (ctx) => {
   players = [];
   turn = 0;
 })
+
+bot.command("1", (ctx) => {
+  play();
+})
+
+bot.command("2", (ctx) => {
+  play();
+})
+
+function play() {
+  ctx.reply("play :)");
+}
 
 bot.catch((err) => {
   console.log('Ooops', err);
