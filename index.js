@@ -6,8 +6,9 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 var players = [];
 var turn = 0;
 
-const TEMPLATE = "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
-var board = TEMPLATE;
+const STARTTEMPLATE = "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
+const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
+var board = [[1,2,3],[4,5,6],[7,8,9]];
 
 bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
@@ -31,7 +32,7 @@ bot.command("me", ctx => {
 
 bot.command("play", (ctx) => {
 //   ctx.reply(ctx.message.from);
-  ctx.reply(TEMPLATE);
+  ctx.reply(STARTTEMPLATE);
   ctx.reply("who play against you?");
   const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
   players.push({
@@ -46,6 +47,7 @@ bot.command("play", (ctx) => {
 
 bot.command("end", (ctx) => {
   ctx.reply("Game Over!");
+  board = [[1,2,3],[4,5,6],[7,8,9]];
   players = [];
   turn = 0;
 })
@@ -65,7 +67,27 @@ function play(ctx, pos) {
   if (ctx.message.from.id == players[0].id) sign = "X";
   ctx.reply("position: " + pos);
   ctx.reply("sign: " + sign);
+  for (let i = 0; i < 3 ; i++ ) {
+    for (let j = 0; j < 3 ; j++ ) { 
+      if (board[i][j] == pos) board[i][j] = sign;
+    }
+  }
 }
+
+function createBoard() {
+  var print = "";
+  for (let i = 0; i < 3 ; i++ ) {
+    print += "|"
+    for (let j = 0; j < 3 ; j++ ) { 
+      if (board[i][j] == "X" || board[i][j] == "O") print += "  " + board[i][j] + "  |";
+      else print += "     |";
+    }
+    print += "\n ";
+  }
+  
+  return print;
+}
+
 
 bot.catch((err) => {
   console.log('Ooops', err);
