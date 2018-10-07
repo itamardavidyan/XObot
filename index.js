@@ -13,7 +13,7 @@ bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
-bot.command(/me/i, ctx => {
+bot.command("me", ctx => {
   if (players.length == 0) ctx.reply("send \play to start new game");
   if (players.length >= 2) ctx.reply("2 players already play");
 //   ctx.reply("length: " + players.length);
