@@ -60,8 +60,8 @@ bot.command("8", (ctx) => play(ctx, "8"))
 bot.command("9", (ctx) => play(ctx, "9"))
 
 function play(ctx, pos) {
-  var sign = "O";
-  if (ctx.message.from.id == players[turn].id) sign = "X";
+  var sign = players[turn].sign;
+  // if (ctx.message.from.id == players[turn].id) sign = "X";
   ctx.reply("position: " + pos);
   ctx.reply("sign: " + sign);
   for (let i = 0; i < 3 ; i++ ) {
