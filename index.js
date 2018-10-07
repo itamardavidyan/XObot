@@ -62,8 +62,8 @@ bot.command("9", (ctx) => play(ctx, "9"))
 function play(ctx, pos) {
   var sign = players[turn].sign;
   // if (ctx.message.from.id == players[turn].id) sign = "X";
-  ctx.reply("position: " + pos);
-  ctx.reply("sign: " + sign);
+  // ctx.reply("position: " + pos);
+  // ctx.reply("sign: " + sign);
   for (let i = 0; i < 3 ; i++ ) {
     for (let j = 0; j < 3 ; j++ ) { 
       if (board[i][j] == pos) board[i][j] = sign;
