@@ -6,13 +6,13 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 var players = [];
 var turn = 0;
 
-const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
+const TEMPLATE = "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
 var board = TEMPLATE;
 
 bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
-// bot.hears("hi", ctx => ctx.reply("Hey there"));
+
 bot.hears(/me/i, ctx => {
   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
@@ -29,7 +29,6 @@ bot.command("play", (ctx) => {
   ctx.reply(ctx.message.from.id);
   ctx.reply(TEMPLATE);
   ctx.reply("who play against you?");
-//   players[0] = "X";
   players.push({
     id: ctx.message.from.id,
     sign: "X"
