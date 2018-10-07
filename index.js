@@ -26,14 +26,13 @@ bot.hears(/me/i, ctx => {
 });
 
 bot.command("play", (ctx) => {
-  ctx.reply(ctx.message.from.id);
+  ctx.reply(ctx.message.from);
   ctx.reply(TEMPLATE);
   ctx.reply("who play against you?");
   players.push({
     id: ctx.message.from.id,
     sign: "X"
   });
-  ctx.reply(players[turn].sign);
 //   ctx.reply(players[turn]);
 //   if (turn == 0) turn = 1;
 //   else turn = 0;
