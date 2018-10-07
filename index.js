@@ -3,7 +3,7 @@ const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // var players = ["X","O"];
-// var players = [];
+var players = [];
 var turn = 0;
 
 const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
@@ -23,12 +23,12 @@ bot.command("play", (ctx) => {
   ctx.reply(ctx.message.from.id);
   ctx.reply(TEMPLATE);
   ctx.reply("who play against you?");
-  players[0] = "X";
-//   players.push({
-//     id: ctx.message.from.id,
-//     sign: "X"
-//   });
-  ctx.reply(players[0]);
+//   players[0] = "X";
+  players.push({
+    id: ctx.message.from.id,
+    sign: "X"
+  });
+  ctx.reply(players[turn]);
   ctx.reply("here");
 
 //   ctx.reply(players[turn]);
