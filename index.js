@@ -41,13 +41,14 @@ bot.command("play", (ctx) => {
 })
 
 bot.command("end", (ctx) => {
-  ctx.reply("");
+  ctx.reply("Game Over!");
   players = [];
   turn = 0;
 })
 
 bot.catch((err) => {
-  console.log('Ooops', err)
+  console.log('Ooops', err);
+  ctx.reply("Ooops..");
 })
 
 bot.startPolling();
