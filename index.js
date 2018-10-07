@@ -51,6 +51,14 @@ bot.command("end", (ctx) => {
 })
 
 bot.command("1", (ctx) => play(ctx))
+bot.command("2", (ctx) => play(ctx))
+bot.command("3", (ctx) => play(ctx))
+bot.command("4", (ctx) => play(ctx))
+bot.command("5", (ctx) => play(ctx))
+bot.command("6", (ctx) => play(ctx))
+bot.command("7", (ctx) => play(ctx))
+bot.command("8", (ctx) => play(ctx))
+bot.command("9", (ctx) => play(ctx))
 
 function play(ctx) {
   ctx.reply("play :)");
