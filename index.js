@@ -16,6 +16,10 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 bot.hears(/me/i, ctx => {
   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
+  players.push({
+    id: ctx.message.from.id,
+    sign: "O"
+  });
   const msg = players[0].id + " vs " + players[1].id;
   ctx.reply(msg);
   ctx.reply("let's the game begin!");
