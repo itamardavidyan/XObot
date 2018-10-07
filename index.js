@@ -12,7 +12,6 @@ bot.hears(/buy/i, ctx => ctx.reply("Buy-buy"));
 
 bot.hears("play", (ctx) => {
   ctx.reply("Hey there3");
-  ctx.reply(ctx);
   ctx.reply(TEMPLATE);
 })
 
