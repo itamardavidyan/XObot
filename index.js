@@ -16,22 +16,26 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 bot.hears(/me/i, ctx => {
   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
+  const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
   players.push({
     id: ctx.message.from.id,
-    sign: "O"
+    sign: "O",
+    name: fullName
   });
-  const msg = players[0].id + " vs " + players[1].id;
+  const msg = players[0].name + " vs " + players[1].name;
   ctx.reply(msg);
   ctx.reply("let's the game begin!");
 });
 
 bot.command("play", (ctx) => {
-  ctx.reply(ctx.message.from);
+//   ctx.reply(ctx.message.from);
   ctx.reply(TEMPLATE);
   ctx.reply("who play against you?");
+  const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
   players.push({
     id: ctx.message.from.id,
-    sign: "X"
+    sign: "X",
+    name: fullName
   });
 //   ctx.reply(players[turn]);
 //   if (turn == 0) turn = 1;
