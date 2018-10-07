@@ -14,6 +14,8 @@ bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
 bot.command(/me/i, ctx => {
+  if (players.length == 0) ctx.reply("send \play to start new game");
+  if (players.length >= 2) ctx.reply("2 players already play");
 //   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
   const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
