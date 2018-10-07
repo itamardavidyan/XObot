@@ -14,6 +14,7 @@ bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 // bot.hears("hi", ctx => ctx.reply("Hey there"));
 bot.hears(/me/i, ctx => {
+  ctx.reply("you");
   if (players.length == 0) return;
   ctx.reply("game start")
 });
@@ -26,7 +27,9 @@ bot.command("play", (ctx) => {
     id: ctx.message.from.id,
     sign: "X"
   });
-  ctx.reply(players[turn]);
+  ctx.reply(players[turn].sign);
+  ctx.reply("here");
+
 //   ctx.reply(players[turn]);
 //   if (turn == 0) turn = 1;
 //   else turn = 0;
