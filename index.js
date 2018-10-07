@@ -13,7 +13,10 @@ bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 // bot.hears("hi", ctx => ctx.reply("Hey there"));
-bot.hears(/buy/i, ctx => ctx.reply("Buy-buy"));
+bot.hears(/me/i, ctx => {
+  if (players.length == 0) return;
+  ctx.reply("game start")
+});
 
 bot.command("play", (ctx) => {
   ctx.reply(ctx.message.from.id);
