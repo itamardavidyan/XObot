@@ -15,10 +15,10 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 bot.hears(/buy/i, ctx => ctx.reply("Buy-buy"));
 
 bot.command("play", (ctx) => {
-  ctx.reply(players[turn]);
-  turn = !turn;
   ctx.reply(ctx.message.from.id);
   ctx.reply(TEMPLATE);
+  ctx.reply(players[turn]);
+  turn = !turn;
 })
 
 bot.startPolling();
