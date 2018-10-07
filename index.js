@@ -50,18 +50,18 @@ bot.command("end", (ctx) => {
   turn = 0;
 })
 
-bot.command("1", (ctx) => play(ctx))
-bot.command("2", (ctx) => play(ctx))
-bot.command("3", (ctx) => play(ctx))
-bot.command("4", (ctx) => play(ctx))
-bot.command("5", (ctx) => play(ctx))
-bot.command("6", (ctx) => play(ctx))
-bot.command("7", (ctx) => play(ctx))
-bot.command("8", (ctx) => play(ctx))
-bot.command("9", (ctx) => play(ctx))
+bot.command("1", (ctx) => play(ctx, "1"))
+bot.command("2", (ctx) => play(ctx, "2"))
+bot.command("3", (ctx) => play(ctx, "3"))
+bot.command("4", (ctx) => play(ctx, "4"))
+bot.command("5", (ctx) => play(ctx, "5"))
+bot.command("6", (ctx) => play(ctx, "6"))
+bot.command("7", (ctx) => play(ctx, "7"))
+bot.command("8", (ctx) => play(ctx, "8"))
+bot.command("9", (ctx) => play(ctx, "9"))
 
-function play(ctx) {
-  ctx.reply("play :)");
+function play(ctx, sign) {
+  ctx.reply("play :)" + sign);
 }
 
 bot.catch((err) => {
