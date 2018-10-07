@@ -2,7 +2,7 @@
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-const TEMPLATE = " |     |     |     | \n |     |     |     | \n |     |     |     | ";
+const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 
 bot.start(ctx => ctx.reply("Welcome!!! :)"));
 bot.help(ctx => ctx.reply("Send me a sticker"));
