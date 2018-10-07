@@ -30,4 +30,8 @@ bot.command("play", (ctx) => {
 //   else turn = 0;
 })
 
+bot.catch((err) => {
+  console.log('Ooops', err)
+})
+
 bot.startPolling();
