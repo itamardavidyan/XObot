@@ -49,22 +49,17 @@ bot.command("end", (ctx) => {
 })
 
 bot.command("1", (ctx) => {
-  play();
+  play(ctx);
 })
-
 bot.command("2", (ctx) => {
-  play();
-})
-
-bot.command("2", (ctx) => {
-  play();
+  play(ctx);
 })
 bot.command("3", (ctx) => {
-  play();
+  play(ctx);
 })
-bot.command("4", (ctx) => play())
+bot.command("4", (ctx) => play(ctx)
 
-function play() {
+function play(ctx) {
   ctx.reply("play :)");
 }
 
