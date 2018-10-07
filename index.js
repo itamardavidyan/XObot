@@ -14,6 +14,7 @@ bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 // bot.hears("hi", ctx => ctx.reply("Hey there"));
 bot.hears(/me/i, ctx => {
+  ctx.reply("length: " + players.length);
   if (players.length != 1) return;
   const msg = players[0].id + " vs " + players[1].id;
   ctx.reply(msg);
