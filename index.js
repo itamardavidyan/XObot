@@ -72,6 +72,9 @@ function play(ctx, pos) {
       if (board[i][j] == pos) board[i][j] = sign;
     }
   }
+  var print = createBoard();
+  ctx.reply(print);
+
 }
 
 function createBoard() {
