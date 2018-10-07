@@ -4,7 +4,7 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 
 // var players = ["X","O"];
 // var players = [];
-var turn = 1;
+var turn = 0;
 
 const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = TEMPLATE;
@@ -26,7 +26,6 @@ bot.command("play", (ctx) => {
     id: ctx.message.from.id,
     sign: "X"
   });
-  turn = ctx.message.from.id;
   ctx.reply(players[turn]);
 //   ctx.reply(players[turn]);
 //   if (turn == 0) turn = 1;
