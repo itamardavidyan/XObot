@@ -22,7 +22,10 @@ bot.command("play", (ctx) => {
   ctx.reply(ctx.message.from.id);
   ctx.reply(TEMPLATE);
   ctx.reply("who play against you?");
-  players[ctx.message.from.id] = "X";
+  players.push({
+    id: ctx.message.from.id,
+    sign: "X"
+  });
   turn = ctx.message.from.id;
   ctx.reply(players[turn]);
 //   ctx.reply(players[turn]);
