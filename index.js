@@ -14,9 +14,9 @@ bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 // bot.hears("hi", ctx => ctx.reply("Hey there"));
 bot.hears(/me/i, ctx => {
-  ctx.reply("you");
-  if (players.length == 0) return;
-  ctx.reply("game start")
+  if (players.length != 1) return;
+  const msg = players[0].id + " vs " + players[1].id;
+  ctx.reply("let's the game begin!")
 });
 
 bot.command("play", (ctx) => {
