@@ -40,9 +40,6 @@ bot.command("play", (ctx) => {
     sign: "X",
     name: fullName
   });
-//   ctx.reply(players[turn]);
-//   if (turn == 0) turn = 1;
-//   else turn = 0;
 })
 
 bot.command("end", (ctx) => {
@@ -74,6 +71,9 @@ function play(ctx, pos) {
   }
   var print = createBoard();
   ctx.reply(print);
+  
+  if (turn == 0) turn = 1;
+  else turn = 0;
 
 }
 
