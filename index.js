@@ -34,6 +34,12 @@ bot.command("play", (ctx) => {
 //   else turn = 0;
 })
 
+bot.command("end", (ctx) => {
+  ctx.reply("");
+  players = [];
+  turn = 0;
+})
+
 bot.catch((err) => {
   console.log('Ooops', err)
 })
