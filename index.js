@@ -2,8 +2,8 @@
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-var players = [true: "X",false: "O"];
-var turn = true;
+var players = ["X","O"];
+var turn = 1;
 
 const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = TEMPLATE;
@@ -18,7 +18,8 @@ bot.command("play", (ctx) => {
   ctx.reply(ctx.message.from.id);
   ctx.reply(TEMPLATE);
   ctx.reply(players[turn]);
-  turn = !turn;
+  if (turn == 0) turn = 1;
+  else turn = 0;
 })
 
 bot.startPolling();
