@@ -10,7 +10,7 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 bot.hears(/buy/i, ctx => ctx.reply("Buy-buy"));
 
 bot.hears("hi", (ctx) => {
-  ctx.reply("Hey there");
+  ctx.reply("Hey there1");
 })
 
 bot.startPolling();
