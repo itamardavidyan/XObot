@@ -50,16 +50,7 @@ bot.command("end", (ctx) => {
   turn = 0;
 })
 
-bot.command("1", (ctx) => {
-  play(ctx);
-})
-bot.command("2", (ctx) => {
-  play(ctx);
-})
-bot.command("3", (ctx) => {
-  play(ctx);
-})
-bot.command("4", (ctx) => play(ctx)
+bot.command("1", (ctx) => play(ctx))
 
 function play(ctx) {
   ctx.reply("play :)");
