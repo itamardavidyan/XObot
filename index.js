@@ -49,57 +49,57 @@ bot.command("end", (ctx) => {
   turn = 0;
 })
 
-// bot.command("1", (ctx) => play(ctx, "1"))
-// bot.command("2", (ctx) => play(ctx, "2"))
-// bot.command("3", (ctx) => play(ctx, "3"))
-// bot.command("4", (ctx) => play(ctx, "4"))
-// bot.command("5", (ctx) => play(ctx, "5"))
-// bot.command("6", (ctx) => play(ctx, "6"))
-// bot.command("7", (ctx) => play(ctx, "7"))
-// bot.command("8", (ctx) => play(ctx, "8"))
-// bot.command("9", (ctx) => play(ctx, "9"))
+bot.command("1", (ctx) => play(ctx, "1"))
+bot.command("2", (ctx) => play(ctx, "2"))
+bot.command("3", (ctx) => play(ctx, "3"))
+bot.command("4", (ctx) => play(ctx, "4"))
+bot.command("5", (ctx) => play(ctx, "5"))
+bot.command("6", (ctx) => play(ctx, "6"))
+bot.command("7", (ctx) => play(ctx, "7"))
+bot.command("8", (ctx) => play(ctx, "8"))
+bot.command("9", (ctx) => play(ctx, "9"))
 
-// function play(ctx, pos) {
-//   var sign = players[turn].sign;
-//   // if (ctx.message.from.id == players[turn].id) sign = "X";
-//   // ctx.reply("position: " + pos);
-//   // ctx.reply("sign: " + sign);
-//   var found = false;
+function play(ctx, pos) {
+  var sign = players[turn].sign;
+  // if (ctx.message.from.id == players[turn].id) sign = "X";
+  // ctx.reply("position: " + pos);
+  // ctx.reply("sign: " + sign);
+  var found = false;
   
-//   for (let i = 0; i < 3 ; i++ ) {
-//     for (let j = 0; j < 3 ; j++ ) { 
-//       if (board[i][j] == pos) {
-//         board[i][j] = sign;
-//         found = true;
-//       }
-//     }
-//   }
-//   if (!found) {
-//     return;
-//     ctx.reply("this position on the board already used.. \n please select another position");
-//   }
+  for (let i = 0; i < 3 ; i++ ) {
+    for (let j = 0; j < 3 ; j++ ) { 
+      if (board[i][j] == pos) {
+        board[i][j] = sign;
+        found = true;
+      }
+    }
+  }
+  if (!found) {
+    return;
+    ctx.reply("this position on the board already used.. \n please select another position");
+  }
   
-//   ctx.reply(createBoard());
+  ctx.reply(createBoard());
   
-//   if (turn == 0) turn = 1;
-//   else turn = 0;
-//   ctx.reply(players[turn].name + " it's your turn");
+  if (turn == 0) turn = 1;
+  else turn = 0;
+  ctx.reply(players[turn].name + " it's your turn");
 
-// }
+}
 
-// function createBoard() {
-//   var print = "";
-//   for (let i = 0; i < 3 ; i++ ) {
-//     print += "|"
-//     for (let j = 0; j < 3 ; j++ ) { 
-//       if (board[i][j] == "X" || board[i][j] == "O") print += "  " + board[i][j] + "  |";
-//       else print += "     |";
-//     }
-//     print += "\n ";
-//   }
+function createBoard() {
+  var print = "";
+  for (let i = 0; i < 3 ; i++ ) {
+    print += "|"
+    for (let j = 0; j < 3 ; j++ ) { 
+      if (board[i][j] == "X" || board[i][j] == "O") print += "  " + board[i][j] + "  |";
+      else print += "     |";
+    }
+    print += "\n ";
+  }
   
-//   return print;
-// }
+  return print;
+}
 
 
 bot.catch((err) => {
