@@ -14,33 +14,33 @@ bot.start(ctx => ctx.reply("Welcome!!! :) \n * send \\strat to play XO \n * your
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
-// bot.command("me", ctx => {
-//   if (players.length == 0) ctx.reply("send \play to start new game");
-//   if (players.length >= 2) ctx.reply("2 players already play");
-// //   ctx.reply("length: " + players.length);
-//   if (players.length != 1) return;
-//   const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
-//   players.push({
-//     id: ctx.message.from.id,
-//     sign: "O",
-//     name: fullName
-//   });
-//   const msg = players[0].name + " vs " + players[1].name;
-//   ctx.reply(msg);
-//   ctx.reply("let's the game begin!");
-// });
+bot.command("me", ctx => {
+  if (players.length == 0) ctx.reply("send \play to start new game");
+  if (players.length >= 2) ctx.reply("2 players already play");
+//   ctx.reply("length: " + players.length);
+  if (players.length != 1) return;
+  const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
+  players.push({
+    id: ctx.message.from.id,
+    sign: "O",
+    name: fullName
+  });
+  const msg = players[0].name + " vs " + players[1].name;
+  ctx.reply(msg);
+  ctx.reply("let's the game begin!");
+});
 
-// bot.command("play", (ctx) => {
-// //   ctx.reply(ctx.message.from);
-//   ctx.reply(STARTTEMPLATE);
-//   ctx.reply("who play against you?");
-//   const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
-//   players.push({
-//     id: ctx.message.from.id,
-//     sign: "X",
-//     name: fullName
-//   });
-// })
+bot.command("play", (ctx) => {
+//   ctx.reply(ctx.message.from);
+  ctx.reply(STARTTEMPLATE);
+  ctx.reply("who play against you?");
+  const fullName = ctx.message.from.first_name + " " + ctx.message.from.last_name
+  players.push({
+    id: ctx.message.from.id,
+    sign: "X",
+    name: fullName
+  });
+})
 
 bot.command("end", (ctx) => {
   ctx.reply("Game Over!");
