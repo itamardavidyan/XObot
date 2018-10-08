@@ -64,13 +64,22 @@ function play(ctx, pos) {
   // if (ctx.message.from.id == players[turn].id) sign = "X";
   // ctx.reply("position: " + pos);
   // ctx.reply("sign: " + sign);
+  var found = false;
+  
   for (let i = 0; i < 3 ; i++ ) {
     for (let j = 0; j < 3 ; j++ ) { 
-      if (board[i][j] == pos) board[i][j] = sign;
+      if (board[i][j] == pos) {
+        board[i][j] = sign;
+        found = true;
+      }
     }
   }
-  var print = createBoard();
-  ctx.reply(print);
+  if (!found) {
+    return;
+    ctx.reply("this position on the board already used.. \n please select another position");
+  }
+  
+  ctx.reply(createBoard());
   
   if (turn == 0) turn = 1;
   else turn = 0;
