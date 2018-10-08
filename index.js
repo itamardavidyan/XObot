@@ -45,15 +45,15 @@ bot.command("play", ctx => {
   player.sign = "X";
   player.name = fullName;
 
-  players.push({
+  players.push(
     player
     // id: ctx.message.from.id,
     // sign: "X",
     // name: fullName
-  });
+  );
 
   ctx.reply("player1 name: " + player.name);
-  ctx.reply("player1-1 name: " + player[0].name);
+  ctx.reply("player1-1 name: " + players[0].name);
 });
 
 bot.command("me", ctx => {
@@ -68,12 +68,12 @@ bot.command("me", ctx => {
   player.sign = "O";
   player.name = fullName;
 
-  players.push({
+  players.push(
     player
     // id: ctx.message.from.id,
     // sign: "O",
     // name: fullName
-  });
+  );
 
   const msg =
     STARTTEMPLATE +
