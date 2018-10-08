@@ -1,5 +1,8 @@
+"use strict";
+
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
+const HumanPlayer = require("./humanPlayer.js");
 
 // var players = ["X","O"];
 var players = [];
@@ -20,6 +23,7 @@ bot.help(ctx =>
 bot.on("sticker", ctx => ctx.reply("👍"));
 
 bot.command("play", ctx => {
+  // checks
   if (players.length == 1) {
     ctx.reply(
       "send /me to be the second player \n or \n send /end to end the game"
@@ -30,14 +34,22 @@ bot.command("play", ctx => {
     ctx.reply("2 players already play \n send /end to end the game");
     return;
   }
-  ctx.reply(STARTTEMPLATE);
+  // end checks
+
   ctx.reply("who play against you?");
   const fullName =
     ctx.message.from.first_name + " " + ctx.message.from.last_name;
+
+  let player = new HumanPlayer();
+  player.id = ctx.message.from.id;
+  player.sign = "X";
+  player.name = fullName;
+
   players.push({
-    id: ctx.message.from.id,
-    sign: "X",
-    name: fullName
+    player
+    // id: ctx.message.from.id,
+    // sign: "X",
+    // name: fullName
   });
 });
 
@@ -47,14 +59,27 @@ bot.command("me", ctx => {
   if (players.length != 1) return;
   const fullName =
     ctx.message.from.first_name + " " + ctx.message.from.last_name;
+
+  let player = new HumanPlayer();
+  player.id = ctx.message.from.id;
+  player.sign = "O";
+  player.name = fullName;
+
   players.push({
-    id: ctx.message.from.id,
-    sign: "O",
-    name: fullName
+    player
+    // id: ctx.message.from.id,
+    // sign: "O",
+    // name: fullName
   });
-  const msg = players[0].name + " vs " + players[1].name;
+
+  const msg =
+    STARTTEMPLATE +
+    "\n" +
+    players[0].name +
+    " vs " +
+    players[1].name +
+    "\n let's the game begin!";
   ctx.reply(msg);
-  ctx.reply("let's the game begin!");
 });
 
 bot.command("bot", ctx => {
