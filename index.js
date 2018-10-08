@@ -52,8 +52,8 @@ bot.command("play", ctx => {
     // name: fullName
   );
 
-  ctx.reply("player1 name: " + player.name);
-  ctx.reply("player1-1 name: " + players[0].name);
+  // ctx.reply("player1 name: " + player.name);
+  // ctx.reply("player1-1 name: " + players[0].name);
 });
 
 bot.command("me", ctx => {
