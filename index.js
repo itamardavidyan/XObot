@@ -31,7 +31,7 @@ bot.command("me", ctx => {
 });
 
 bot.command("play", (ctx) => {
-    console.log('try /play');
+//     console.log('try /play');
 //   ctx.reply(ctx.message.from);
   ctx.reply(STARTTEMPLATE);
   ctx.reply("who play against you?");
@@ -113,27 +113,27 @@ function createBoard() {
   return print;
 }
 
-function allSame(i1, i2, i3, val) {
-    if (board[i1[0]][i1[1]] == board[i2[0]][i2[1]] && board[i1[0]][i1[1]] == board[i3[0]][i3[1]] && board[i1[0]][i1[1]] == val) return true;
-    else return false;
-}
+// function allSame(i1, i2, i3, val) {
+//     if (board[i1[0]][i1[1]] == board[i2[0]][i2[1]] && board[i1[0]][i1[1]] == board[i3[0]][i3[1]] && board[i1[0]][i1[1]] == val) return true;
+//     else return false;
+// }
 
-function getWinner() {
-  const sign = players[turn].sign;
-  // rows
-  if (allSame((0, 0), (0, 1), (0, 2), sign)) return true;
-  if (allSame((1, 0), (1, 1), (1, 2), sign)) return true;
-  if (allSame((2, 0), (2, 1), (2, 2), sign)) return true;
+// function getWinner() {
+//   const sign = players[turn].sign;
+//   // rows
+//   if (allSame((0, 0), (0, 1), (0, 2), sign)) return true;
+//   if (allSame((1, 0), (1, 1), (1, 2), sign)) return true;
+//   if (allSame((2, 0), (2, 1), (2, 2), sign)) return true;
 
-  // columns
-  if (allSame((0, 0), (1, 0), (2, 0), sign)) return true;
-  if (allSame((0, 1), (1, 1), (2, 1), sign)) return true;
-  if (allSame((0, 2), (1, 2), (2, 2), sign)) return true;
+//   // columns
+//   if (allSame((0, 0), (1, 0), (2, 0), sign)) return true;
+//   if (allSame((0, 1), (1, 1), (2, 1), sign)) return true;
+//   if (allSame((0, 2), (1, 2), (2, 2), sign)) return true;
 
-  // diagonals
-  if (allSame((0, 0), (1, 1), (2, 2), sign)) return true;
-  if (allSame((0, 2), (1, 1), (2, 0), sign)) return true;
-}
+//   // diagonals
+//   if (allSame((0, 0), (1, 1), (2, 2), sign)) return true;
+//   if (allSame((0, 2), (1, 1), (2, 0), sign)) return true;
+// }
 
 
 
