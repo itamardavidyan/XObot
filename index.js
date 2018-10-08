@@ -20,6 +20,16 @@ bot.help(ctx =>
 bot.on("sticker", ctx => ctx.reply("👍"));
 
 bot.command("play", ctx => {
+  if (players.length == 1) {
+    ctx.reply(
+      "send /me to be the second player \n or \n send /end to end the game"
+    );
+    return;
+  }
+  if (players.length >= 2) {
+    ctx.reply("2 players already play \n send /end to end the game");
+    return;
+  }
   ctx.reply(STARTTEMPLATE);
   ctx.reply("who play against you?");
   const fullName =
