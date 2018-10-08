@@ -14,15 +14,26 @@ var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 bot.start(ctx => ctx.reply("Welcome!!!"));
 bot.help(ctx =>
   ctx.reply(
-    "inturactions: \n * /play - start game \n * /me - assign the second player \n * /1 - /9 - set sign in this cell \n enjoy!"
+    "inturactions: \n * /play - start game \n * /me - assign the second player \n * /1 - /9 - set sign in this cell \n * /end - end the game \n enjoy!"
   )
 );
 bot.on("sticker", ctx => ctx.reply("👍"));
 
+bot.command("play", ctx => {
+  ctx.reply(STARTTEMPLATE);
+  ctx.reply("who play against you?");
+  const fullName =
+    ctx.message.from.first_name + " " + ctx.message.from.last_name;
+  players.push({
+    id: ctx.message.from.id,
+    sign: "X",
+    name: fullName
+  });
+});
+
 bot.command("me", ctx => {
-  if (players.length == 0) ctx.reply("send play to start new game");
+  if (players.length == 0) ctx.reply("send /play to start new game");
   if (players.length >= 2) ctx.reply("2 players already play");
-  //   ctx.reply("length: " + players.length);
   if (players.length != 1) return;
   const fullName =
     ctx.message.from.first_name + " " + ctx.message.from.last_name;
@@ -36,18 +47,19 @@ bot.command("me", ctx => {
   ctx.reply("let's the game begin!");
 });
 
-bot.command("play", ctx => {
-  //     console.log('try /play');
-  //   ctx.reply(ctx.message.from);
-  ctx.reply(STARTTEMPLATE);
-  ctx.reply("who play against you?");
-  const fullName =
-    ctx.message.from.first_name + " " + ctx.message.from.last_name;
+bot.command("bot", ctx => {
+  if (players.length == 0) ctx.reply("send /play to start new game");
+  if (players.length >= 2) ctx.reply("2 players already play");
+  if (players.length != 1) return;
+  const fullName = "XObot";
   players.push({
-    id: ctx.message.from.id,
-    sign: "X",
+    id: 0,
+    sign: "O",
     name: fullName
   });
+  const msg = players[0].name + " vs " + players[1].name;
+  ctx.reply(msg);
+  ctx.reply("let's the game begin!");
 });
 
 bot.command("end", ctx => {
@@ -68,9 +80,6 @@ bot.command("9", ctx => play(ctx, "9"));
 function play(ctx, pos) {
   if (players.length != 2) return;
   var sign = players[turn].sign;
-  // if (ctx.message.from.id == players[turn].id) sign = "X";
-  // ctx.reply("position: " + pos);
-  // ctx.reply("sign: " + sign);
   var found = false;
 
   for (let i = 0; i < 3; i++) {
