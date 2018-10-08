@@ -48,12 +48,6 @@ bot.command("end", (ctx) => {
   init();
 })
 
-function init() {
-  board = [[1,2,3],[4,5,6],[7,8,9]];
-  players = [];
-  turn = 0;
-}
-
 bot.command("1", (ctx) => play(ctx, "1"))
 bot.command("2", (ctx) => play(ctx, "2"))
 bot.command("3", (ctx) => play(ctx, "3"))
@@ -86,7 +80,8 @@ function play(ctx, pos) {
   }
   
   ctx.reply(createBoard());
-  if (getWinner()) {
+//   if (getWinner()) {
+  if (false) {
     ctx.reply(players[turn].name + " won!!");
     init();
     return;
@@ -111,6 +106,12 @@ function createBoard() {
   }
   
   return print;
+}
+
+function init() {
+  board = [[1,2,3],[4,5,6],[7,8,9]];
+  players = [];
+  turn = 0;
 }
 
 // function allSame(i1, i2, i3, val) {
