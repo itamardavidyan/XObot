@@ -75,9 +75,9 @@ bot.command("me", ctx => {
   const msg =
     STARTTEMPLATE +
     "\n" +
-    players[0].name +
+    players[0].name() +
     " vs " +
-    players[1].name +
+    players[1].name() +
     "\n let's the game begin!";
   ctx.reply(msg);
 });
