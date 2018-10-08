@@ -75,8 +75,8 @@ function play(ctx, pos) {
     }
   }
   if (!found) {
-    return;
     ctx.reply("this position on the board already used.. \n please select another position");
+    return;
   }
   
   ctx.reply(createBoard());
