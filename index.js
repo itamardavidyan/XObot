@@ -11,7 +11,7 @@ const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |
 var board = [[1,2,3],[4,5,6],[7,8,9]];
 
 bot.start(ctx => ctx.reply("Welcome!!! "));
-bot.help((ctx => ctx.reply("inturactions: \n * /play - start game \n * /me - assign the second player \n * /1 - /9 - put player sign in the spesific cell"));
+bot.help((ctx => ctx.reply("inturactions: \n * /play - start game \n * /me - assign the second player \n "));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
 // bot.command("me", ctx => {
