@@ -45,7 +45,7 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 
 // bot.command("end", (ctx) => {
 //   ctx.reply("Game Over!");
-//   init();
+//   initVars();
 // })
 
 // bot.command("1", (ctx) => play(ctx, "1"))
@@ -83,7 +83,7 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 // //   if (getWinner()) {
 //   if (false) {
 //     ctx.reply(players[turn].name + " won!!");
-//     init();
+//     initVars();
 //     return;
 //   }
 //   else {
@@ -108,7 +108,7 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 //   return print;
 // }
 
-// function init() {
+// function initVars() {
 //   board = [[1,2,3],[4,5,6],[7,8,9]];
 //   players = [];
 //   turn = 0;
