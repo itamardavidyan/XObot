@@ -1,4 +1,3 @@
-
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
@@ -6,12 +5,18 @@ const bot = new Telegraf(process.env.BOT_TOKEN);
 var players = [];
 var turn = 0;
 
-const STARTTEMPLATE = "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
-const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
-var board = [[1,2,3],[4,5,6],[7,8,9]];
+const STARTTEMPLATE =
+  "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
+const TEMPLATE =
+  "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
+var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
 bot.start(ctx => ctx.reply("Welcome!!! "));
-bot.help((ctx => ctx.reply("inturactions: \n * /play - start game \n * /me - assign the second player \n "));
+bot.help(ctx =>
+  ctx.reply(
+    "inturactions: \n * /play - start game \n * /me - assign the second player \n "
+  )
+);
 bot.on("sticker", ctx => ctx.reply("👍"));
 
 // bot.command("me", ctx => {
@@ -65,9 +70,9 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 //   // ctx.reply("position: " + pos);
 //   // ctx.reply("sign: " + sign);
 //   var found = false;
-  
+
 //   for (let i = 0; i < 3 ; i++ ) {
-//     for (let j = 0; j < 3 ; j++ ) { 
+//     for (let j = 0; j < 3 ; j++ ) {
 //       if (board[i][j] == pos) {
 //         board[i][j] = sign;
 //         found = true;
@@ -78,7 +83,7 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 //     ctx.reply("this position on the board already used.. \n please select another position");
 //     return;
 //   }
-  
+
 //   ctx.reply(createBoard());
 // //   if (getWinner()) {
 //   if (false) {
@@ -98,13 +103,13 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 //   var print = "";
 //   for (let i = 0; i < 3 ; i++ ) {
 //     print += "|"
-//     for (let j = 0; j < 3 ; j++ ) { 
+//     for (let j = 0; j < 3 ; j++ ) {
 //       if (board[i][j] == "X" || board[i][j] == "O") print += "  " + board[i][j] + "  |";
 //       else print += "     |";
 //     }
 //     print += "\n ";
 //   }
-  
+
 //   return print;
 // }
 
@@ -136,11 +141,9 @@ bot.on("sticker", ctx => ctx.reply("👍"));
 //   if (allSame((0, 2), (1, 1), (2, 0), sign)) return true;
 // }
 
-
-
-bot.catch((err) => {
-  console.log('Ooops', err);
+bot.catch(err => {
+  console.log("Ooops", err);
   ctx.reply("Ooops..");
-})
+});
 
 bot.startPolling();
