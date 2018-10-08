@@ -10,7 +10,7 @@ const STARTTEMPLATE = "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  |
 const TEMPLATE = "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = [[1,2,3],[4,5,6],[7,8,9]];
 
-bot.start(ctx => ctx.reply("Welcome!!! \n * send \strat to play XO \n your friend will send \me \n and let's the game begin!"));
+bot.start(ctx => ctx.reply("Welcome!!! \n * send \\strat to play XO \n * your friend will send \\me "));
 bot.help(ctx => ctx.reply("Send me a sticker"));
 bot.on("sticker", ctx => ctx.reply("👍"));
 
@@ -83,6 +83,7 @@ function play(ctx, pos) {
   
   if (turn == 0) turn = 1;
   else turn = 0;
+  ctx.reply(players[turn].name + " it's your turn");
 
 }
 
