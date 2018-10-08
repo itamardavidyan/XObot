@@ -89,8 +89,7 @@ function play(ctx, pos) {
   }
 
   ctx.reply(createBoard());
-  //   if (getWinner()) {
-  if (false) {
+  if (getWinner()) {
     ctx.reply(players[turn].name + " won!!");
     initVars();
     return;
