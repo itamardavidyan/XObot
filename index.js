@@ -124,7 +124,13 @@ function play(ctx, pos) {
     ctx.reply(players[turn].name + " won!!");
     initVars();
     return;
-  } else {
+  }
+  else if (tie()) {
+    ctx.reply("tie... \n send /play to start new game");
+    initVars();
+    return;
+  }
+  else {
     if (turn == 0) turn = 1;
     else turn = 0;
     ctx.reply(players[turn].name + " it's your turn");
@@ -183,6 +189,18 @@ function getWinner() {
   // diagonals
   if (allSame([0, 0], [1, 1], [2, 2], sign)) return true;
   if (allSame([0, 2], [1, 1], [2, 0], sign)) return true;
+}
+
+function tie() {
+	var num = 1;
+	for (let i = 0; i < 3; i++) {
+		for (let j = 0; j < 3; j++) {
+		  if ( board[i][j] == num.toString() ) return false;
+		  num++;
+		}
+	}
+
+	return true;
 }
 
 bot.catch(err => {
