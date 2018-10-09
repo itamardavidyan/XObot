@@ -25,7 +25,7 @@ class HumanPlayer {
     return this._name;
   }
 
-  play(ctx) {
+  play() {
     // ctx.reply("Hello World!!");
   }
 }

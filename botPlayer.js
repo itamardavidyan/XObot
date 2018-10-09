@@ -25,8 +25,9 @@ class BotPlayer {
     return this._name;
   }
 
-  play(ctx) {
-    ctx.reply("/2");
+  play() {
+    ctx.reply("2");
+    return "2";
   }
 }
 
