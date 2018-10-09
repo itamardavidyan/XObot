@@ -138,6 +138,7 @@ function play(ctx, pos) {
     // if (typeof(players[turn]) === BotPlayer) {
     if (players[turn] instanceof BotPlayer) {
       const nextMove = players[turn].play(board);
+      ctx.reply("bot chooose: /" + nextMove );
       play(ctx, nextMove);
     }
   }
