@@ -51,9 +51,9 @@ function minimax(newBoard, player) {
   const aiPlayer = 'O';
 	var availSpots = emptySquares(newBoard);
 
-	if (checkWin(newBoard)) {
+	if (getWinner(newBoard)) {
 		return {score: -10};
-	} else if (checkWin(newBoard)) {
+	} else if (getWinner(newBoard)) {
 		return {score: 10};
 	} else if (availSpots.length === 0) {
 		return {score: 0};
@@ -91,6 +91,33 @@ function minimax(newBoard, player) {
 	}
 
 	return moves[bestMove];
+}
+
+function allSame(i1, i2, i3, sign, board) {
+  if (
+    board[i1[0]][i1[1]] == board[i2[0]][i2[1]] &&
+    board[i1[0]][i1[1]] == board[i3[0]][i3[1]] &&
+    board[i1[0]][i1[1]] == sign
+  )
+    return true;
+  else return false;
+}
+
+function getWinner(board) {
+  const sign = players[turn].sign;
+  // rows
+  if (allSame([0, 0], [0, 1], [0, 2], sign, board)) return true;
+  if (allSame([1, 0], [1, 1], [1, 2], sign, board)) return true;
+  if (allSame([2, 0], [2, 1], [2, 2], sign, board)) return true;
+
+  // columns
+  if (allSame([0, 0], [1, 0], [2, 0], sign, board)) return true;
+  if (allSame([0, 1], [1, 1], [2, 1], sign, board)) return true;
+  if (allSame([0, 2], [1, 2], [2, 2], sign, board)) return true;
+
+  // diagonals
+  if (allSame([0, 0], [1, 1], [2, 2], sign, board)) return true;
+  if (allSame([0, 2], [1, 1], [2, 0], sign, board)) return true;
 }
 
 module.exports = BotPlayer;
