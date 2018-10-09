@@ -3,6 +3,7 @@
 const Telegraf = require("telegraf");
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const HumanPlayer = require("./humanPlayer.js");
+const BotPlayer = require("./botPlayer.js");
 
 // var players = ["X","O"];
 var players = [];
@@ -47,13 +48,7 @@ bot.command("play", ctx => {
 
   players.push(
     player
-    // id: ctx.message.from.id,
-    // sign: "X",
-    // name: fullName
   );
-
-  // ctx.reply("player1 name: " + player.name);
-  // ctx.reply("player1-1 name: " + players[0].name);
 });
 
 bot.command("me", ctx => {
@@ -70,9 +65,6 @@ bot.command("me", ctx => {
 
   players.push(
     player
-    // id: ctx.message.from.id,
-    // sign: "O",
-    // name: fullName
   );
 
   const msg =
@@ -145,7 +137,7 @@ function play(ctx, pos) {
     if (turn == 0) turn = 1;
     else turn = 0;
     ctx.reply(players[turn].name + " it's your turn");
-    //try
+    
     players[turn].play(ctx);
   }
 }

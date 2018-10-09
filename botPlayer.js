@@ -1,8 +1,8 @@
-class HumanPlayer {
+class BotPlayer {
   constructor() {
-    this.id = "400";
-    this.sign = "e";
-    this.name = "err";
+    this.id = "00";
+    this.sign = "O";
+    this.name = "botPlayer";
   }
   set id(id) {
     this._id = id;
@@ -26,8 +26,8 @@ class HumanPlayer {
   }
 
   play(ctx) {
-    // ctx.reply("Hello World!!");
+    ctx.reply("Hello World!!");
   }
 }
 
-module.exports = HumanPlayer;
+module.exports = BotPlayer;
