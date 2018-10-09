@@ -67,13 +67,7 @@ bot.command("me", ctx => {
     player
   );
 
-  const msg =
-    STARTTEMPLATE +
-    "\n" +
-    players[0].name +
-    " vs " +
-    players[1].name +
-    "\n let's the game begin!";
+  const msg = STARTTEMPLATE + "\n" + players[0].name + " vs " + players[1].name + "\n let's the game begin!";
   ctx.reply(msg);
 });
 
@@ -81,15 +75,12 @@ bot.command("bot", ctx => {
   if (players.length == 0) ctx.reply("send /play to start new game");
   if (players.length >= 2) ctx.reply("2 players already play");
   if (players.length != 1) return;
-  const fullName = "XObot";
-  players.push({
-    id: 0,
-    sign: "O",
-    name: fullName
-  });
-  const msg = players[0].name + " vs " + players[1].name;
+
+  let bot = new BotPlayer();
+  players.push(bot);
+
+  const msg = STARTTEMPLATE + "\n" + players[0].name + " vs " + players[1].name + "\n let's the game begin!";
   ctx.reply(msg);
-  ctx.reply("let's the game begin!");
 });
 
 bot.command("end", ctx => {
