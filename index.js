@@ -129,8 +129,11 @@ function play(ctx, pos) {
     else turn = 0;
     ctx.reply(players[turn].name + " it's your turn");
     
-    const nextMove = players[turn].play();
-    play(ctx, nextMove);
+    // if (typeof(players[turn]) === BotPlayer) {
+    if (players[turn] instanceof BotPlayer) {
+      const nextMove = players[turn].play();
+      play(ctx, nextMove);
+    }
   }
 }
 
