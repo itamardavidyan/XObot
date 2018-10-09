@@ -130,7 +130,7 @@ function play(ctx, pos) {
     ctx.reply(players[turn].name + " it's your turn");
     
     const nextMove = players[turn].play();
-    ctx.reply("play: " + nextMove);
+    play(ctx, nextMove);
   }
 }
 

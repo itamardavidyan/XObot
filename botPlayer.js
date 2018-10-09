@@ -26,7 +26,6 @@ class BotPlayer {
   }
 
   play() {
-    // ctx.reply("2");
     return "2";
   }
 }
