@@ -137,7 +137,7 @@ function play(ctx, pos) {
     
     // if (typeof(players[turn]) === BotPlayer) {
     if (players[turn] instanceof BotPlayer) {
-      const nextMove = players[turn].play();
+      const nextMove = players[turn].play(board);
       play(ctx, nextMove);
     }
   }
