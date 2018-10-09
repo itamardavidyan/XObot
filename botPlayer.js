@@ -49,7 +49,7 @@ function emptySquares(board) {
 function minimax(newBoard, player) {
   const huPlayer = 'X';
   const aiPlayer = 'O';
-	var availSpots = emptySquares(board);
+	var availSpots = emptySquares(newBoard);
 
 	if (checkWin(newBoard)) {
 		return {score: -10};
