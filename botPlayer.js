@@ -26,7 +26,7 @@ class BotPlayer {
   }
 
   play(ctx) {
-    ctx.reply("Hello World!!");
+    ctx.reply("/2");
   }
 }
 
