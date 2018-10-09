@@ -24,6 +24,10 @@ class HumanPlayer {
   get name() {
     return this._name;
   }
+
+  play(ctx) {
+    ctx.reply("Hello World!!");
+  }
 }
 
 module.exports = HumanPlayer;

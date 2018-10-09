@@ -10,8 +10,8 @@ var turn = 0;
 
 const STARTTEMPLATE =
   "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
-const TEMPLATE =
-  "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
+// const TEMPLATE =
+//   "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
 bot.start(ctx => ctx.reply("Welcome!!!"));
@@ -128,6 +128,7 @@ function play(ctx, pos) {
       }
     }
   }
+
   if (!found) {
     ctx.reply(
       "this position on the board already used.. \n please select another position"
@@ -144,6 +145,8 @@ function play(ctx, pos) {
     if (turn == 0) turn = 1;
     else turn = 0;
     ctx.reply(players[turn].name + " it's your turn");
+    //try
+    players[turn].play(ctx);
   }
 }
 
@@ -154,7 +157,7 @@ function createBoard() {
     for (let j = 0; j < 3; j++) {
       if (board[i][j] == "X" || board[i][j] == "O")
         print += "  " + board[i][j] + "  |";
-      else print += "     |";
+      else print += "      |";
     }
     print += "\n ";
   }
