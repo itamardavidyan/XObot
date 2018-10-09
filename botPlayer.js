@@ -26,7 +26,7 @@ class BotPlayer {
   }
 
   play(board) {
-    return minimax(board, 'O');
+    return minimax(board, 'O').index;
   }
 }
 
