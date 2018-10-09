@@ -51,9 +51,9 @@ function minimax(newBoard, player) {
   const aiPlayer = 'O';
 	var availSpots = emptySquares(newBoard);
 
-	if (getWinner(newBoard)) {
+	if (getWinner(newBoard, player)) {
 		return {score: -10};
-	} else if (getWinner(newBoard)) {
+	} else if (getWinner(newBoard, player)) {
 		return {score: 10};
 	} else if (availSpots.length === 0) {
 		return {score: 0};
@@ -103,8 +103,8 @@ function allSame(i1, i2, i3, sign, board) {
   else return false;
 }
 
-function getWinner(board) {
-  const sign = players[turn].sign;
+function getWinner(board, player) {
+  const sign = player;
   // rows
   if (allSame([0, 0], [0, 1], [0, 2], sign, board)) return true;
   if (allSame([1, 0], [1, 1], [1, 2], sign, board)) return true;
