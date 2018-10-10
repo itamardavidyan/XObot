@@ -101,7 +101,7 @@ function startMsg(ctx) {
 
 bot.command("end", ctx => {
   const id = ctx.message.from.id;
-  if ((players.length == 2) && (id != players[0].id) && (id != players[1].id)) {
+  if (players.length == 2 && id != players[0].id && id != players[1].id) {
     ctx.reply(
       "you can't finish this game because you aren't one of the players.."
     );
@@ -111,10 +111,10 @@ bot.command("end", ctx => {
   initVars();
 });
 
-// bot.command("X", ctx => setStart(ctx, "X"));
-// bot.command("O", ctx => setStart(ctx, "O"));
+bot.command("X", ctx => setStart(ctx, "X"));
+bot.command("O", ctx => setStart(ctx, "O"));
 
-function setStart(ctx, sign) {
+async function setStart(ctx, sign) {
   if (startSignSet) {
     ctx.reply("start sign already assign");
     return;
