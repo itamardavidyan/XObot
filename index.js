@@ -15,10 +15,10 @@ const STARTTEMPLATE =
 //   "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-bot.start(ctx => ctx.reply("Welcome!!!"));
+bot.start(ctx => ctx.reply("Welcome!!! \n send /play to start new game"));
 bot.help(ctx =>
   ctx.reply(
-    "inturactions: \n * /play - start game \n * /me - assign the second player \n * /1 - /9 - set sign in this cell \n * /end - end the game \n enjoy!"
+    "inturactions: \n * /play - start game \n * /me - assign the second player \n * /bot - play against bot \n * /1 - /9 - set sign in this cell \n * /end - end the game \n enjoy!"
   )
 );
 bot.on("sticker", ctx => ctx.reply("👍"));
@@ -27,7 +27,7 @@ bot.command("play", ctx => {
   // checks
   if (players.length == 1) {
     ctx.reply(
-      "send /me to be the second player \n or \n send /end to end the game"
+      "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
     );
     return;
   }
@@ -46,14 +46,13 @@ bot.command("play", ctx => {
   player.sign = "X";
   player.name = fullName;
 
-  players.push(
-    player
-  );
+  players.push(player);
 });
 
 bot.command("me", ctx => {
   if (players.length == 0) ctx.reply("send /play to start new game");
-  if (players.length >= 2) ctx.reply("2 players already play");
+  if (players.length >= 2)
+    ctx.reply("2 players already play \n send /end to end the game");
   if (players.length != 1) return;
   const fullName =
     ctx.message.from.first_name + " " + ctx.message.from.last_name;
@@ -63,28 +62,45 @@ bot.command("me", ctx => {
   player.sign = "O";
   player.name = fullName;
 
-  players.push(
-    player
-  );
+  players.push(player);
 
-  const msg = STARTTEMPLATE + "\n" + players[0].name + " vs " + players[1].name + "\n let's the game begin!";
+  const msg =
+    STARTTEMPLATE +
+    "\n" +
+    players[0].name +
+    " vs " +
+    players[1].name +
+    "\n let's the game begin!";
   ctx.reply(msg);
 });
 
 bot.command("bot", ctx => {
   if (players.length == 0) ctx.reply("send /play to start new game");
-  if (players.length >= 2) ctx.reply("2 players already play");
+  if (players.length >= 2)
+    ctx.reply("2 players already play \n send /end to end the game");
   if (players.length != 1) return;
 
   let bot = new BotPlayer();
   players.push(bot);
 
-  const msg = STARTTEMPLATE + "\n" + players[0].name + " vs " + players[1].name + "\n let's the game begin!";
+  const msg =
+    STARTTEMPLATE +
+    "\n" +
+    players[0].name +
+    " vs " +
+    players[1].name +
+    "\n let's the game begin!";
   ctx.reply(msg);
 });
 
 bot.command("end", ctx => {
-  ctx.reply("Game Over!");
+  const id = ctx.message.from.id;
+  if (id != players[0].id && id != players[1].id) {
+    ctx.reply(
+      "you can't finish this game because you aren't one of the players.."
+    );
+  }
+  ctx.reply("Game Over! \n send /play to start new game");
   initVars();
 });
 
@@ -124,21 +140,19 @@ function play(ctx, pos) {
     ctx.reply(players[turn].name + " won!!");
     initVars();
     return;
-  }
-  else if (tie()) {
+  } else if (tie()) {
     ctx.reply("tie... \n send /play to start new game");
     initVars();
     return;
-  }
-  else {
+  } else {
     if (turn == 0) turn = 1;
     else turn = 0;
     ctx.reply(players[turn].name + " it's your turn");
-    
+
     // if (typeof(players[turn]) === BotPlayer) {
     if (players[turn] instanceof BotPlayer) {
       const nextMove = players[turn].play(board);
-      ctx.reply("bot chooose: /" + nextMove );
+      ctx.reply("bot chooose: /" + nextMove);
       play(ctx, nextMove);
     }
   }
@@ -193,15 +207,15 @@ function getWinner() {
 }
 
 function tie() {
-	var num = 1;
-	for (let i = 0; i < 3; i++) {
-		for (let j = 0; j < 3; j++) {
-		  if ( board[i][j] == num.toString() ) return false;
-		  num++;
-		}
-	}
+  var num = 1;
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (board[i][j] == num.toString()) return false;
+      num++;
+    }
+  }
 
-	return true;
+  return true;
 }
 
 bot.catch(err => {
