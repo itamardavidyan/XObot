@@ -141,7 +141,7 @@ async function play(ctx, pos) {
     return;
   }
 
-  ctx.reply(createBoard());
+  await ctx.reply(createBoard());
   if (getWinner()) {
     ctx.reply(players[turn].name + " won!! \n send /play to start new game");
     initVars();
