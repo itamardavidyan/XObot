@@ -120,7 +120,7 @@ bot.command("7", ctx => play(ctx, "7"));
 bot.command("8", ctx => play(ctx, "8"));
 bot.command("9", ctx => play(ctx, "9"));
 
-function play(ctx, pos) {
+async function play(ctx, pos) {
   if (players.length != 2) return;
   var sign = players[turn].sign;
   var found = false;
@@ -143,7 +143,7 @@ function play(ctx, pos) {
 
   ctx.reply(createBoard());
   if (getWinner()) {
-    ctx.reply(players[turn].name + " won!!");
+    ctx.reply(players[turn].name + " won!! \n send /play to start new game");
     initVars();
     return;
   } else if (tie()) {
@@ -153,12 +153,12 @@ function play(ctx, pos) {
   } else {
     if (turn == 0) turn = 1;
     else turn = 0;
-    ctx.reply(players[turn].name + " it's your turn");
+    await ctx.reply(players[turn].name + " it's your turn");
 
     // if (typeof(players[turn]) === BotPlayer) {
     if (players[turn] instanceof BotPlayer) {
       const nextMove = players[turn].play(board);
-      ctx.reply("bot chooose: /" + nextMove);
+      await ctx.reply("bot chooose: /" + nextMove);
       play(ctx, nextMove);
     }
   }
