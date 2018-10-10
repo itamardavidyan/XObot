@@ -33,7 +33,9 @@ bot.command("play", ctx => {
     return;
   }
   if (players.length >= 2) {
-    ctx.reply("2 players already play \n send /end to end the game");
+    ctx.reply(
+      "2 players already play \n send /end to end the game \n send /me to be the second player \n send /bot to play against bot"
+    );
     return;
   }
   // end checks
