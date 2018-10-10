@@ -33,14 +33,14 @@ bot.command("play", ctx => {
     return;
   }
   if (players.length >= 2) {
-    ctx.reply(
-      "2 players already play \n send /end to end the game \n send /me to be the second player \n send /bot to play against bot"
-    );
+    ctx.reply("2 players already play \n send /end to end the game");
     return;
   }
   // end checks
 
-  ctx.reply("who play against you?");
+  ctx.reply(
+    "who play against you? \n send /me to be the second player \n send /bot to play against bot"
+  );
   const fullName =
     ctx.message.from.first_name + " " + ctx.message.from.last_name;
 
