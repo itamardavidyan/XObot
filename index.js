@@ -111,8 +111,8 @@ bot.command("end", ctx => {
   initVars();
 });
 
-bot.command("X", ctx => setStart(ctx, "X"));
-bot.command("O", ctx => setStart(ctx, "O"));
+// bot.command("X", ctx => setStart(ctx, "X"));
+// bot.command("O", ctx => setStart(ctx, "O"));
 
 function setStart(ctx, sign) {
   if (startSignSet) {
