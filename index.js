@@ -132,6 +132,8 @@ async function setStart(ctx, sign) {
   if (sign == "X") return;
   turn = 1;
 
+  await ctx.reply(players[turn].name + " it's your turn");
+
   if (players[turn] instanceof BotPlayer) {
     const nextMove = players[turn].play(board);
     await ctx.reply("bot choose: /" + nextMove);
