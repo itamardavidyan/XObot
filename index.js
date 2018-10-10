@@ -11,7 +11,7 @@ var turn = 0;
 var gameStart = false;
 
 const STARTTEMPLATE =
-  "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
+  "Board Game: \n |  /1  |  /2  |  /3  | \n |  /4  |  /5  |  /6  | \n |  /7  |  /8  |  /9  | ";
 // const TEMPLATE =
 //   "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
@@ -66,16 +66,7 @@ bot.command("me", ctx => {
   player.name = fullName;
 
   players.push(player);
-
-  const msg =
-    STARTTEMPLATE +
-    "\n" +
-    players[0].name +
-    " vs " +
-    players[1].name +
-    "\n let's the game begin!";
-  ctx.reply(msg);
-  gameStart = true;
+  startMsg(ctx);
 });
 
 bot.command("bot", ctx => {
@@ -86,17 +77,26 @@ bot.command("bot", ctx => {
 
   let bot = new BotPlayer();
   players.push(bot);
+  startMsg(ctx);
+});
 
+function startMsg(ctx) {
   const msg =
     STARTTEMPLATE +
     "\n" +
     players[0].name +
+    '("' +
+    players[0].sign +
+    '")' +
     " vs " +
     players[1].name +
+    '("' +
+    players[1].sign +
+    '")' +
     "\n let's the game begin!";
   ctx.reply(msg);
   gameStart = true;
-});
+}
 
 bot.command("end", ctx => {
   const id = ctx.message.from.id;
@@ -158,7 +158,7 @@ async function play(ctx, pos) {
     // if (typeof(players[turn]) === BotPlayer) {
     if (players[turn] instanceof BotPlayer) {
       const nextMove = players[turn].play(board);
-      await ctx.reply("bot chooose: /" + nextMove);
+      await ctx.reply("bot choose: /" + nextMove);
       play(ctx, nextMove);
     }
   }
