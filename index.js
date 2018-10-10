@@ -8,7 +8,7 @@ const BotPlayer = require("./botPlayer.js");
 // var players = ["X","O"];
 var players = [];
 var turn = 0;
-var gameStart = false;
+// var gameStart = false;
 var startSignSet = false;
 
 const STARTTEMPLATE =
@@ -96,12 +96,12 @@ function startMsg(ctx) {
     '") ' +
     "\n let's the game begin! \n (to set who start send /X or /O - default: X start)";
   ctx.reply(msg);
-  gameStart = true;
+  // gameStart = true;
 }
 
 bot.command("end", ctx => {
   const id = ctx.message.from.id;
-  if (gameStart && id != players[0].id && id != players[1].id) {
+  if ((players.length == 2) && id != players[0].id && id != players[1].id) {
     ctx.reply(
       "you can't finish this game because you aren't one of the players.."
     );
@@ -219,7 +219,7 @@ function initVars() {
   board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
   players = [];
   turn = 0;
-  gameStart = false;
+  // gameStart = false;
   startSignSet = false;
 }
 
