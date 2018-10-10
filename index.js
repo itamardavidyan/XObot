@@ -137,7 +137,7 @@ function setStart(ctx, sign) {
     await ctx.reply("bot choose: /" + nextMove);
     play(ctx, nextMove);
   }
-// }
+}
 
 bot.command("1", ctx => play(ctx, "1"));
 bot.command("2", ctx => play(ctx, "2"));
