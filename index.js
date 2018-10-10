@@ -99,17 +99,17 @@ function startMsg(ctx) {
   // gameStart = true;
 }
 
-// bot.command("end", ctx => {
-//   const id = ctx.message.from.id;
-//   if ((players.length == 2) && id != players[0].id && id != players[1].id) {
-//     ctx.reply(
-//       "you can't finish this game because you aren't one of the players.."
-//     );
-//     return;
-//   }
-//   ctx.reply("Game Over! \n send /play to start new game");
-//   initVars();
-// });
+bot.command("end", ctx => {
+  const id = ctx.message.from.id;
+  if ((players.length == 2) && (id != players[0].id) && (id != players[1].id)) {
+    ctx.reply(
+      "you can't finish this game because you aren't one of the players.."
+    );
+    return;
+  }
+  ctx.reply("Game Over! \n send /play to start new game");
+  initVars();
+});
 
 bot.command("X", ctx => setStart(ctx, "X"));
 bot.command("O", ctx => setStart(ctx, "O"));
