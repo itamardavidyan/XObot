@@ -8,6 +8,7 @@ const BotPlayer = require("./botPlayer.js");
 // var players = ["X","O"];
 var players = [];
 var turn = 0;
+var gameStart = false;
 
 const STARTTEMPLATE =
   "Board Game: \n |  1  |  2  |  3  | \n |  4  |  5  |  6  | \n |  7  |  8  |  9  | ";
@@ -72,6 +73,7 @@ bot.command("me", ctx => {
     players[1].name +
     "\n let's the game begin!";
   ctx.reply(msg);
+  gameStart = true;
 });
 
 bot.command("bot", ctx => {
@@ -91,14 +93,16 @@ bot.command("bot", ctx => {
     players[1].name +
     "\n let's the game begin!";
   ctx.reply(msg);
+  gameStart = true;
 });
 
 bot.command("end", ctx => {
   const id = ctx.message.from.id;
-  if (id != players[0].id && id != players[1].id) {
+  if (gameStart && id != players[0].id && id != players[1].id) {
     ctx.reply(
       "you can't finish this game because you aren't one of the players.."
     );
+    return;
   }
   ctx.reply("Game Over! \n send /play to start new game");
   initVars();
@@ -177,6 +181,7 @@ function initVars() {
   board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
   players = [];
   turn = 0;
+  gameStart = false;
 }
 
 function allSame(i1, i2, i3, sign) {
