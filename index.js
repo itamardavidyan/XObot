@@ -9,6 +9,7 @@ const BotPlayer = require("./botPlayer.js");
 var players = [];
 var turn = 0;
 var gameStart = false;
+var startSignSet = false;
 
 const STARTTEMPLATE =
   "Board Game: \n |  /1  |  /2  |  /3  | \n |  /4  |  /5  |  /6  | \n |  /7  |  /8  |  /9  | ";
@@ -85,15 +86,15 @@ function startMsg(ctx) {
     STARTTEMPLATE +
     "\n" +
     players[0].name +
-    '("' +
+    ' ("' +
     players[0].sign +
-    '")' +
+    '") ' +
     " vs " +
     players[1].name +
-    '("' +
+    ' ("' +
     players[1].sign +
-    '")' +
-    "\n let's the game begin!";
+    '") ' +
+    "\n let's the game begin! \n (to set who start send /X or /O - default: X start)";
   ctx.reply(msg);
   gameStart = true;
 }
@@ -110,6 +111,34 @@ bot.command("end", ctx => {
   initVars();
 });
 
+bot.command("X", ctx => setStart(ctx, "X"));
+bot.command("O", ctx => setStart(ctx, "O"));
+
+function setStart(ctx, sign) {
+  if (startSignSet) {
+    ctx.reply("start sign already assign");
+    return;
+  }
+  if (players.length == 0) {
+    ctx.reply("send /play to start new game");
+  } else if (players.length == 1) {
+    ctx.reply(
+      "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
+    );
+  }
+  if (players.length != 2) return;
+
+  startSignSet = true;
+  if (sign == "X") return;
+  turn = 1;
+
+  if (players[turn] instanceof BotPlayer) {
+    const nextMove = players[turn].play(board);
+    await ctx.reply("bot choose: /" + nextMove);
+    play(ctx, nextMove);
+  }
+}
+
 bot.command("1", ctx => play(ctx, "1"));
 bot.command("2", ctx => play(ctx, "2"));
 bot.command("3", ctx => play(ctx, "3"));
@@ -121,6 +150,13 @@ bot.command("8", ctx => play(ctx, "8"));
 bot.command("9", ctx => play(ctx, "9"));
 
 async function play(ctx, pos) {
+  if (players.length == 0) {
+    ctx.reply("send /play to start new game");
+  } else if (players.length == 1) {
+    ctx.reply(
+      "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
+    );
+  }
   if (players.length != 2) return;
   var sign = players[turn].sign;
   var found = false;
@@ -184,6 +220,7 @@ function initVars() {
   players = [];
   turn = 0;
   gameStart = false;
+  startSignSet = false;
 }
 
 function allSame(i1, i2, i3, sign) {
