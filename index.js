@@ -17,87 +17,87 @@ const STARTTEMPLATE =
 //   "Board Game: \n |     |     |     | \n |     |     |     | \n |     |     |     | ";
 var board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
-// bot.start(ctx => ctx.reply("Welcome!!! \n send /play to start new game"));
-// bot.help(ctx =>
-//   ctx.reply(
-//     "inturactions: \n * /play - start game \n * /me - assign the second player \n * /bot - play against bot \n * /1 - /9 - set sign in this cell \n * /end - end the game \n enjoy!"
-//   )
-// );
-// bot.on("sticker", ctx => ctx.reply("👍"));
+bot.start(ctx => ctx.reply("Welcome!!! \n send /play to start new game"));
+bot.help(ctx =>
+  ctx.reply(
+    "inturactions: \n * /play - start game \n * /me - assign the second player \n * /bot - play against bot \n * /1 - /9 - set sign in this cell \n * /end - end the game \n enjoy!"
+  )
+);
+bot.on("sticker", ctx => ctx.reply("👍"));
 
-// bot.command("play", ctx => {
-//   // checks
-//   if (players.length == 1) {
-//     ctx.reply(
-//       "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
-//     );
-//     return;
-//   }
-//   if (players.length >= 2) {
-//     ctx.reply("2 players already play \n send /end to end the game");
-//     return;
-//   }
-//   // end checks
+bot.command("play", ctx => {
+  // checks
+  if (players.length == 1) {
+    ctx.reply(
+      "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
+    );
+    return;
+  }
+  if (players.length >= 2) {
+    ctx.reply("2 players already play \n send /end to end the game");
+    return;
+  }
+  // end checks
 
-//   ctx.reply(
-//     "who play against you? \n send /me to be the second player \n send /bot to play against bot"
-//   );
-//   const fullName =
-//     ctx.message.from.first_name + " " + ctx.message.from.last_name;
+  ctx.reply(
+    "who play against you? \n send /me to be the second player \n send /bot to play against bot"
+  );
+  const fullName =
+    ctx.message.from.first_name + " " + ctx.message.from.last_name;
 
-//   let player = new HumanPlayer();
-//   player.id = ctx.message.from.id;
-//   player.sign = "X";
-//   player.name = fullName;
+  let player = new HumanPlayer();
+  player.id = ctx.message.from.id;
+  player.sign = "X";
+  player.name = fullName;
 
-//   players.push(player);
-// });
+  players.push(player);
+});
 
-// bot.command("me", ctx => {
-//   if (players.length == 0) ctx.reply("send /play to start new game");
-//   if (players.length >= 2)
-//     ctx.reply("2 players already play \n send /end to end the game");
-//   if (players.length != 1) return;
-//   const fullName =
-//     ctx.message.from.first_name + " " + ctx.message.from.last_name;
+bot.command("me", ctx => {
+  if (players.length == 0) ctx.reply("send /play to start new game");
+  if (players.length >= 2)
+    ctx.reply("2 players already play \n send /end to end the game");
+  if (players.length != 1) return;
+  const fullName =
+    ctx.message.from.first_name + " " + ctx.message.from.last_name;
 
-//   let player = new HumanPlayer();
-//   player.id = ctx.message.from.id;
-//   player.sign = "O";
-//   player.name = fullName;
+  let player = new HumanPlayer();
+  player.id = ctx.message.from.id;
+  player.sign = "O";
+  player.name = fullName;
 
-//   players.push(player);
-//   startMsg(ctx);
-// });
+  players.push(player);
+  startMsg(ctx);
+});
 
-// bot.command("bot", ctx => {
-//   if (players.length == 0) ctx.reply("send /play to start new game");
-//   if (players.length >= 2)
-//     ctx.reply("2 players already play \n send /end to end the game");
-//   if (players.length != 1) return;
+bot.command("bot", ctx => {
+  if (players.length == 0) ctx.reply("send /play to start new game");
+  if (players.length >= 2)
+    ctx.reply("2 players already play \n send /end to end the game");
+  if (players.length != 1) return;
 
-//   let bot = new BotPlayer();
-//   players.push(bot);
-//   startMsg(ctx);
-// });
+  let bot = new BotPlayer();
+  players.push(bot);
+  startMsg(ctx);
+});
 
-// function startMsg(ctx) {
-//   const msg =
-//     STARTTEMPLATE +
-//     "\n" +
-//     players[0].name +
-//     ' ("' +
-//     players[0].sign +
-//     '") ' +
-//     " vs " +
-//     players[1].name +
-//     ' ("' +
-//     players[1].sign +
-//     '") ' +
-//     "\n let's the game begin! \n (to set who start send /X or /O - default: X start)";
-//   ctx.reply(msg);
-//   // gameStart = true;
-// }
+function startMsg(ctx) {
+  const msg =
+    STARTTEMPLATE +
+    "\n" +
+    players[0].name +
+    ' ("' +
+    players[0].sign +
+    '") ' +
+    " vs " +
+    players[1].name +
+    ' ("' +
+    players[1].sign +
+    '") ' +
+    "\n let's the game begin! \n (to set who start send /X or /O - default: X start)";
+  ctx.reply(msg);
+  // gameStart = true;
+}
 
 // bot.command("end", ctx => {
 //   const id = ctx.message.from.id;
