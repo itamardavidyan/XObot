@@ -111,32 +111,32 @@ function startMsg(ctx) {
 //   initVars();
 // });
 
-// bot.command("X", ctx => setStart(ctx, "X"));
-// bot.command("O", ctx => setStart(ctx, "O"));
+bot.command("X", ctx => setStart(ctx, "X"));
+bot.command("O", ctx => setStart(ctx, "O"));
 
-// function setStart(ctx, sign) {
-//   if (startSignSet) {
-//     ctx.reply("start sign already assign");
-//     return;
-//   }
-//   if (players.length == 0) {
-//     ctx.reply("send /play to start new game");
-//   } else if (players.length == 1) {
-//     ctx.reply(
-//       "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
-//     );
-//   }
-//   if (players.length != 2) return;
+function setStart(ctx, sign) {
+  if (startSignSet) {
+    ctx.reply("start sign already assign");
+    return;
+  }
+  if (players.length == 0) {
+    ctx.reply("send /play to start new game");
+  } else if (players.length == 1) {
+    ctx.reply(
+      "send /me to be the second player \n send /bot to play against bot \n or \n send /end to end the game"
+    );
+  }
+  if (players.length != 2) return;
 
-//   startSignSet = true;
-//   if (sign == "X") return;
-//   turn = 1;
+  startSignSet = true;
+  if (sign == "X") return;
+  turn = 1;
 
-//   if (players[turn] instanceof BotPlayer) {
-//     const nextMove = players[turn].play(board);
-//     await ctx.reply("bot choose: /" + nextMove);
-//     play(ctx, nextMove);
-//   }
+  if (players[turn] instanceof BotPlayer) {
+    const nextMove = players[turn].play(board);
+    await ctx.reply("bot choose: /" + nextMove);
+    play(ctx, nextMove);
+  }
 // }
 
 bot.command("1", ctx => play(ctx, "1"));
